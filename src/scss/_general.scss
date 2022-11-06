@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+hr,
+ul,
+input,
+p {
+    margin: 0;
+}
+
+body {
+    font-family: $robotto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1950px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.image {
+    width: 100%;
+}
+
