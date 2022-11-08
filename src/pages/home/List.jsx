@@ -13,12 +13,15 @@ const List = ({jobList}) => {
     const [location, setLocation] = useState();
     const [currentPosts, setCurrentPosts] = useState();
 
-
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexofFirstPost = indexOfLastPost - postsPerPage;
     const changePage = ({selected}) => {
         setCurrentPage(selected + 1);
+        splitPost(selected + 1);
     };
+    const splitPost = (pageIndex) => {
+        const indexOfLastPost = (pageIndex || currentPage) * postsPerPage;
+        const indexofFirstPost = indexOfLastPost - postsPerPage;
+        setCurrentPosts(jobList.slice(indexofFirstPost, indexOfLastPost));
+    }
 
     Geocode.setApiKey("AIzaSyB5msYIKZZ8SHMMBtD74EwBRQqhXJKzCVo");
 
@@ -40,7 +43,7 @@ const List = ({jobList}) => {
     useEffect(() => {
        if(jobList) {
            getCountry();
-           setCurrentPosts(jobList.slice(indexofFirstPost, indexOfLastPost));
+           splitPost();
         };
        
     }, [jobList]);

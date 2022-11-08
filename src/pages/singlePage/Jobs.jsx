@@ -23,8 +23,8 @@ const Jobs = ({jobList}) => {
             <section className="job-details">
                     <div className="single-page-container">
                     <Link to="/" className="watch-link" >
-                                            More info &#8594;
-                                        </Link>
+                        More info &#8594;
+                    </Link>
                         <p>{currentJob.address}</p>
                     </div>
             </section>
