@@ -3,42 +3,26 @@ import point from "../../img/location.svg";
 import ReactStars from "react-rating-stars-component";
 import ReactPaginate from 'react-paginate';
 import Geocode from "react-geocode";
+import { Link } from "react-router-dom";
 
 
-const Home = () => {
+const List = ({jobList}) => {
 
-    const [jobList, setJobList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
     const [location, setLocation] = useState();
-    const [active, setActive] = useState(false);
+    const [currentPosts, setCurrentPosts] = useState();
 
-    const handleClick = () => {
-      setActive(!active);
-    };
-
-    const request = async ()=> {
-    const response = await fetch (`https://api.json-generator.com/templates/ZM1r0eic3XEy/data`,  {headers:{Authorization: "Bearer wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu"}} );
-    const data = await response.json();
-    console.log(data);
-    setJobList(data);
-    
-    }
-    useEffect(() => {
-        request();
-    }, []);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexofFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = jobList.slice(indexofFirstPost, indexOfLastPost);
-
     const changePage = ({selected}) => {
         setCurrentPage(selected + 1);
     };
 
     Geocode.setApiKey("AIzaSyB5msYIKZZ8SHMMBtD74EwBRQqhXJKzCVo");
 
-    function getCountry() {
+    const getCountry = () => {
         const countryPromises = jobList.map(jobs => {
 
         return Geocode.fromLatLng(jobs.location.lat, jobs.location.long)
@@ -53,29 +37,37 @@ const Home = () => {
             setLocation(dataNew);
         })
     }
-
-   getCountry();
-
+    useEffect(() => {
+       if(jobList) {
+           getCountry();
+           setCurrentPosts(jobList.slice(indexofFirstPost, indexOfLastPost));
+        };
+       
+    }, [jobList]);
+   
+    if(!currentPosts) return null;
+    
     return (
         <div>
             <section className="hero-section">
                 <div>
-                {jobList && (
                         <div className="container">
                             <div className="job-list-wraper">
-                                {currentPosts.map((jobList, index) => (
-                                <div className="job-holder" key={jobList.id}>
+                                {currentPosts.map((post, index) => (
+                                <div className="job-holder" key={post.id}>
                                     <div className="job-list">
                                         <div className="content">
                                             <div className="img-holder">
-                                                <img className="joblist-img" src={jobList.pictures[0]} alt="img" />
+                                                <img className="joblist-img" src={post.pictures[0]} alt="img" />
                                             </div>
                                             <div className="text-content">
-                                                <div className="title-holder">
-                                                    <h2 className="job-title">{jobList.title}</h2>
-                                                </div>
+                                                <Link to={`/${post.id}`} className="link">
+                                                    <div className="title-holder">
+                                                        <h2 className="job-title">{post.title}</h2>
+                                                    </div>
+                                                </Link>
                                                 <p className="department-name">
-                                                    Department name &#8226; {jobList.name}
+                                                    Department name &#8226; {post.name}
                                                 </p>
                                                 <div className="location">
                                                     <img src={point} alt="point" className="loc-point" />
@@ -94,8 +86,8 @@ const Home = () => {
                                             <div className="post-info">
                                                 <input type="checkbox" />
                                                 <p className="posted">{
-                                                   new Date(jobList.updatedAt).getDate() + " " + new Date(jobList.updatedAt).toLocaleString('en-us', { month: 'long' })
-                                                    + " " + new Date(jobList.updatedAt).getFullYear()
+                                                   new Date(post.updatedAt).getDate() + " " + new Date(post.updatedAt).toLocaleString('en-us', { month: 'long' })
+                                                    + " " + new Date(post.updatedAt).getFullYear()
                                                 }</p>
                                             </div>
                                         </div>
@@ -121,8 +113,6 @@ const Home = () => {
                             
                             />
                         </div>
-                        
-                )}
                 </div>
             </section>
             
@@ -130,4 +120,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default List;
