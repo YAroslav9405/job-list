@@ -23,7 +23,7 @@ const List = ({jobList}) => {
         setCurrentPosts(jobList.slice(indexofFirstPost, indexOfLastPost));
     }
 
-    Geocode.setApiKey("AIzaSyB5msYIKZZ8SHMMBtD74EwBRQqhXJKzCVo");
+    Geocode.setApiKey("YOUR_API_KEY");
 
     const getCountry = () => {
         const countryPromises = jobList.map(jobs => {
