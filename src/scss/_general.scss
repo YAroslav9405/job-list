@@ -54,7 +54,7 @@ body {
 }
 
 .btn-empl {  
-    width: 222px;
+    width: 122px;
     height: 49px;
     border: 1px solid rgba(85, 105, 158, 0.3);
     border-radius: 8px;
@@ -64,6 +64,10 @@ body {
     font-size: 16px;
     line-height: 16px;
     color: #55699E;
+
+    @include media('>=tablet') {
+        width: 222px;
+    }
 }
 
 .btn-empl.benef {

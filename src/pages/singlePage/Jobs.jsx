@@ -233,17 +233,6 @@ const Jobs = ({jobList}) => {
       const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
       }, [])
-    
-
-    const text =() => {
-        let textArr = currentJob.description.split(' ').splice(2, 38).join(' ');
-        return textArr;
-    }
-
-    const responsabil =() => {
-        let b= currentJob.description.split(' ').splice(41, 5).join(' ');
-        return b;
-    }
 
     const postedAt = () => {
        let postedDate = new Date(currentJob.updatedAt).getDate() + " " + new Date(currentJob.updatedAt).toLocaleString('en-us', { month: 'long' })
@@ -271,6 +260,7 @@ const Jobs = ({jobList}) => {
                                         <h2 className="title">Job Details</h2>
                                     </div>
                                     <div className="icons-holder">
+                                        <span class="icon-star-empty"></span>
                                         <input type="checkbox" name="checkbox" id="checkbox"/>
                                         <label htmlFor="checkbox">Save to my list</label>
                                         <div className="icon-share"></div>
@@ -278,7 +268,7 @@ const Jobs = ({jobList}) => {
                                     </div>
                                 </div>
                                 <div className="btn-holder">
-                                    <button className="apply-btn">Apply now</button>
+                                    <button className="apply-btn mobile">Apply now</button>
                                 </div>
                                 <div className="title-and-salary">
                                     <div className="job-title-holder">
@@ -289,45 +279,52 @@ const Jobs = ({jobList}) => {
                                         <p className="salary-text">Brutto, per year</p>
                                     </div>
                                 </div>
-                                <p className="posted">{postedAt()}</p>
+                                <div className="salary-posted-wraper">
+                                    <p className="posted">{postedAt()}</p>
+                                    <div className="salary-holder mobile">
+                                            <p className="salary-text">Brutto, per year</p>
+                                            <p className="salary-sum">&#8364; {replace()}</p>
+                                    </div>
+                                </div>
                                 <div className="job-description-wraper">
-                                    <p className="job-description">{text()}</p>
-                                    <p className="responsabil">{responsabil()}</p>
+                                    <p className="job-description">{currentJob.description}</p>
                                 </div>
                                 <div className="btn-holder new">
                                     <button className="apply-btn">Apply now</button>
                                 </div>
-                                <div className="additional-info-wraper">
-                                    <div className="title-holder new">
-                                        <h2 className="title new">Additional info</h2>
-                                    </div>
-                                    <p className="employment-benefits">Employment type</p>
-                                    <div className="btn-empl-wraper">
-                                        {currentJob.employment_type.map(empl => (
-                                            <div className="btn-holder-empl" key={empl.id}>
-                                                <button className="btn-empl">{empl}</button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="employment-benefits">Benefits</p>
-                                    <div className="btn-empl-wraper">
-                                        {currentJob.benefits.map(benef => (
-                                            <div className="btn-holder-empl yellow" key={benef.id}>
-                                                <button className="btn-empl benef">{benef}</button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="attached-images-wraper">
-                                    <div className="title-holder new">
-                                        <h2 className="title new">Attached images</h2>
-                                    </div>
-                                    <div className="images-wraper">
-                                    {currentJob.pictures.map(attached => (
-                                        <div className="attached-images-holder" key={attached.id}>
-                                            <img className="attached-images" src={attached} alt="img" data-fancybox/>
+                                <div className="additional-images-wraper">
+                                    <div className="additional-info-wraper">
+                                        <div className="title-holder new">
+                                            <h2 className="title new">Additional info</h2>
                                         </div>
-                                    ))}
+                                        <p className="employment-benefits">Employment type</p>
+                                        <div className="btn-empl-wraper">
+                                            {currentJob.employment_type.map(empl => (
+                                                <div className="btn-holder-empl" key={empl.id}>
+                                                    <button className="btn-empl">{empl}</button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <p className="employment-benefits">Benefits</p>
+                                        <div className="btn-empl-wraper">
+                                            {currentJob.benefits.map(benef => (
+                                                <div className="btn-holder-empl yellow" key={benef.id}>
+                                                    <button className="btn-empl benef">{benef}</button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="attached-images-wraper">
+                                        <div className="title-holder new">
+                                            <h2 className="title new">Attached images</h2>
+                                        </div>
+                                        <div className="images-wraper">
+                                        {currentJob.pictures.map(attached => (
+                                            <div className="attached-images-holder" key={attached.id}>
+                                                <img className="attached-images" src={attached} alt="img" data-fancybox/>
+                                            </div>
+                                        ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +339,7 @@ const Jobs = ({jobList}) => {
                                             <img src={point} alt="point" className="loc-point" /> 
                                             {currentJob.address}
                                         </div>
-                                        <div className="department-name address ">
+                                        <div className="department-name address email">
                                             <p className="contact-item">{currentJob.phone},</p>
                                             <p className="contact-item">{currentJob.email}</p>
                                         </div>
