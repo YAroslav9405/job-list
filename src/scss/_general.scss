@@ -16,6 +16,7 @@ p {
 
 body {
     font-family: $robotto;
+    color: #3A4562;
 }
 
 .container {
@@ -25,7 +26,49 @@ body {
     margin: 0 auto;
 }
 
+.jobs-container {
+    width: 100%;
+    max-width: 1288px;
+    padding: 56px 15px 0;
+    margin: 0 auto;
+}
+
 .image {
     width: 100%;
 }
 
+.apply-btn {
+    background-color: $dark-blue;
+    color: $white;
+    text-transform: uppercase;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    width: 100%;
+    max-width: 127px;
+    min-height: 52px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-empl {  
+    width: 222px;
+    height: 49px;
+    border: 1px solid rgba(85, 105, 158, 0.3);
+    border-radius: 8px;
+    background: rgba(161, 177, 219, 0.317343); 
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #55699E;
+}
+
+.btn-empl.benef {
+    background: rgba(255, 207, 0, 0.15);
+    border: 1px solid #FFCF00;
+    color: #988B49;
+
+}

@@ -21,7 +21,7 @@ const List = ({jobList}) => {
         const indexOfLastPost = (pageIndex || currentPage) * postsPerPage;
         const indexofFirstPost = indexOfLastPost - postsPerPage;
         setCurrentPosts(jobList.slice(indexofFirstPost, indexOfLastPost));
-    }
+    };
 
     Geocode.setApiKey("YOUR_API_KEY");
 
@@ -76,7 +76,7 @@ const List = ({jobList}) => {
                                                     <img src={point} alt="point" className="loc-point" />
                                                     {location && location.length && <p className="city">
                                                         {location[(currentPage - 1)* 10 + index]}
-                                                    </p>}
+                                                    </p>||<p className="city error">Need Maps Api Key</p>}
                                                 </div>
                                             </div>
                                         </div>

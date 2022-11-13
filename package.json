@@ -9,6 +9,9 @@
   "dependencies": {
   
     
+  "@cyriacbr/react-split-text": "^1.0.0",
+  
+    
   "@fancyapps/ui": "^4.0.30",
   
     
@@ -24,6 +27,12 @@
   "@fortawesome/react-fontawesome": "^0.2.0",
   
     
+  "@googlemaps/react-wrapper": "^1.1.35",
+  
+    
+  "@react-google-maps/api": "^2.17.0",
+  
+    
   "@testing-library/jest-dom": "^5.16.4",
   
     
@@ -31,6 +40,9 @@
   
     
   "@testing-library/user-event": "^13.5.0",
+  
+    
+  "@types/react-select": "^5.0.1",
   
     
   "aws-amplify": "^4.3.30",
@@ -43,6 +55,9 @@
   
     
   "firebase": "^9.9.2",
+  
+    
+  "google-map-react": "^2.2.0",
   
     
   "icomoon-react": "^3.0.0",
@@ -58,6 +73,9 @@
   
     
   "react-dom": "^18.2.0",
+  
+    
+  "react-fancybox": "^0.2.5",
   
     
   "react-geocode": "^0.2.3",
@@ -84,7 +102,7 @@
   "react-scripts": "5.0.1",
   
     
-  "react-select": "^5.4.0",
+  "react-select": "^5.6.0",
   
     
   "react-simple-star-rating": "^5.1.6",
